@@ -27,13 +27,8 @@ const Salam = () => {
                width={[1, 1, 1 / 2, 1 / 3]}
                px={[4, 4, null, null]}
                mt={4}
-               pb={7}
+               mb={4}
                flexDirection='column'
-               sx={{
-                  background: `url("/images/ayik-illust.svg") bottom center`,
-                  backgroundSize: '200px',
-                  backgroundRepeat: 'no-repeat',
-               }}
             >
                <Heading as='h1' py={5}>{`Halo ${recipient}!`}</Heading>
 
