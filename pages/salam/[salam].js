@@ -12,8 +12,9 @@ const Salam = () => {
    return (
       <>
          <Header
-            description='New message from: Ayik'
-            title={`Hai ${recipient}`}
+            description='Surat anyar: Ayik'
+            title={`Halo mbut ${recipient}`}
+            og='https://arifeka.now.sh/images/og/twitter-jowo-og.png'
          ></Header>
          <Flex
             flexDirection='column'
