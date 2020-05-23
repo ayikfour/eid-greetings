@@ -1,15 +1,37 @@
 {
-  "name": "learn-starter",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start"
-  },
-  "dependencies": {
-    "next": "9.3.5",
-    "react": "16.13.1",
-    "react-dom": "16.13.1"
-  }
+   "name": "eid-greetings",
+   "version": "0.1.0",
+   "private": true,
+   "scripts": {
+      "dev": "next dev",
+      "build": "next build",
+      "start": "next start"
+   },
+   "dependencies": {
+      "@mdx-js/loader": "^1.6.1",
+      "@mdx-js/react": "^1.6.1",
+      "@mdx-js/runtime": "^1.6.1",
+      "@next/mdx": "^9.4.0",
+      "@rebass/preset": "^4.0.5",
+      "atob": "^2.1.2",
+      "btoa": "^1.2.1",
+      "emotion-theming": "^10.0.27",
+      "mdx-prism": "^0.3.1",
+      "next": "9.3.5",
+      "postcss-preset-env": "^6.7.0",
+      "prism-react-renderer": "^1.1.0",
+      "prismjs": "^1.20.0",
+      "react": "16.13.1",
+      "react-dom": "16.13.1",
+      "rebass": "^4.0.7",
+      "rehype-stringify": "^7.0.0",
+      "remark-parse": "^8.0.2",
+      "remark-rehype": "^6.0.0",
+      "theme-ui": "^0.3.1"
+   },
+   "devDependencies": {
+      "autoprefixer": "^9.7.6",
+      "postcss-import": "^12.0.1",
+      "tailwindcss": "^1.4.6"
+   }
 }

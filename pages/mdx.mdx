@@ -1,0 +1,28 @@
+import Code from '../components/code';
+import { Button } from 'rebass';
+
+# Welcome to Next.js! this is .mdx
+
+export const meta = {
+   title: 'welcoming into my blog with MDX',
+};
+
+Try components props
+
+```javascript live=true
+export function getAllContentSlugs() {
+   const fileNames = fs.readdirSync(postsDirectory);
+   const text = 'this is some string';
+   return fileNames.map((fileName) => {
+      // Remove ".md" and invalid char from file name to get slug
+      const slug = slugify(fileName);
+      return {
+         params: {
+            slug,
+         },
+      };
+   });
+}
+```
+
+<Button onClick={() => alert('Hello!')}>👋 Hello</Button>
