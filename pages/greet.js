@@ -1,14 +1,11 @@
 import { Heading, Text, Button, Link } from 'rebass';
 import { useRouter } from 'next/router';
-import { useState } from 'react';
 import Header from '../components/Header';
 import GreetLayout from '../components/Layout/Greet';
 import queryString from 'query-string';
 import { toast } from 'react-toastify';
 
 const Greet = () => {
-   const [copied, setCopied] = useState(false);
-
    const router = useRouter();
    const { recipient, sender, character, generated } = router.query;
 
@@ -21,8 +18,13 @@ const Greet = () => {
 
    const handleCopy = async () => {
       const url = getUrl();
-      await navigator.clipboard.writeText(url);
-      setCopied(true);
+
+      const el = document.createElement('textarea');
+      el.value = url;
+      document.body.appendChild(el);
+      el.select();
+      document.execCommand('copy');
+      document.body.removeChild(el);
 
       toast('Tautan berhasil disalin!', {
          position: 'top-right',
@@ -65,7 +67,7 @@ const Greet = () => {
             {generated ? (
                <>
                   <Button mb={3} onClick={handleCopy}>
-                     {!copied ? 'Salin tautan' : 'Telah disalin!'}
+                     Salin tautan
                   </Button>
                </>
             ) : null}
