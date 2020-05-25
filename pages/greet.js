@@ -67,15 +67,6 @@ const Greet = () => {
                   <Button mb={3} onClick={handleCopy}>
                      {!copied ? 'Salin tautan' : 'Telah disalin!'}
                   </Button>
-                  <Link
-                     className='twitter-share-button'
-                     href={`https://twitter.com/intent/tweet?url=${getUrl()}`}
-                     data-size='large'
-                  >
-                     <Button width={1} variant='secondary'>
-                        Tweet sekarang
-                     </Button>
-                  </Link>
                </>
             ) : null}
          </GreetLayout>

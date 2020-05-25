@@ -1,5 +1,5 @@
 import Code from '../components/code';
-import { Box, Flex, Heading } from 'rebass';
+import { Box, Flex, Heading, Button } from 'rebass';
 import Router from 'next/router';
 
 const handler = () => {
@@ -22,9 +22,9 @@ const Home = () => {
             alignItems='center'
             justifyContent='center'
          >
-            <Heading color='background' onClick={handler}>
+            <Button mb={3} onClick={handler} variant='secondary'>
                Kirim-kirim
-            </Heading>
+            </Button>
          </Flex>
       </Flex>
    );
