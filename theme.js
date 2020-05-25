@@ -55,6 +55,7 @@ const theme = {
       coral: '#fffaf2',
       primary: '#000',
       secondary: '#30c',
+      twitter: '#00acee',
       muted: '#f6f6f6',
    },
    variants: {
@@ -73,19 +74,27 @@ const theme = {
    buttons: {
       primary: {
          fontSize: 1,
+         fontWeight: 'bold',
          color: 'background',
          bg: 'primary',
       },
       secondary: {
          fontSize: 1,
-         color: 'background',
+         fontWeight: 'bold',
          bg: 'secondary',
+         color: 'background',
+      },
+      secondary: {
+         fontSize: 1,
+         fontWeight: 'bold',
+         bg: 'twitter',
+         color: 'background',
       },
       outline: {
          fontSize: 1,
+         fontWeight: 'bold',
          bg: 'transparent',
          color: 'primary',
-         fontWeight: 'bold',
          border: '2px solid',
       },
    },

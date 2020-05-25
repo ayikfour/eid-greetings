@@ -5,7 +5,7 @@ const baseUrl = 'https://arifeka.now.sh';
 export default function Header({
    title,
    og = null,
-   description = 'Arif Eka Brilian',
+   description = 'Arif Eka',
    children,
    favicon = '🙋‍♂️',
 }) {
@@ -37,12 +37,7 @@ export default function Header({
             sizes='180x180'
             href='/favicon/apple-touch-icon.png'
          />
-         <link
-            rel='icon'
-            type='image/png'
-            sizes='32x32'
-            href='/favicon/favicon-32x32.png'
-         />
+
          <link
             rel='icon'
             type='image/png'

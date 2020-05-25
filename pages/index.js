@@ -1,7 +1,12 @@
 import Code from '../components/code';
 import { Box, Flex, Heading } from 'rebass';
+import Router from 'next/router';
 
-function Home() {
+const handler = () => {
+   Router.push('/buat');
+};
+
+const Home = () => {
    return (
       <Flex
          flexDirection='column'
@@ -17,10 +22,12 @@ function Home() {
             alignItems='center'
             justifyContent='center'
          >
-            <Heading color='background'>Nani kore</Heading>
+            <Heading color='background' onClick={handler}>
+               Kirim-kirim
+            </Heading>
          </Flex>
       </Flex>
    );
-}
+};
 
 export default Home;

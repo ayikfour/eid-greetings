@@ -1,18 +1,33 @@
-import { Input, Label, Link } from 'theme-ui';
-import { Flex, Box, Button } from 'rebass';
+import { Input, Label, Select } from 'theme-ui';
+import { Box, Button, Heading, Card, Flex, Image } from 'rebass';
 import { useState } from 'react';
 import NextLink from 'next/link';
-import btoa from 'btoa';
 import Header from '../components/Header';
+import GenerateLayout from '../components/Layout/Generate';
+import CharacterList from '../components/Character/CharacterList';
+import { getListCharacter } from '../lib/characters';
 
-const generate = () => {
+const generate = ({ dataCharacter }) => {
    const [recipient, setRecipient] = useState('');
+   const [sender, setSender] = useState('ayik');
+   const [character, setCharacter] = useState('');
 
-   const handleClick = async (e) => {
-      const url = window
-         ? window.location.hostname + `/greet/${btoa(recipient)}`
-         : '';
-      await navigator.clipboard.writeText(url);
+   const queryBuilder = () => {
+      return {
+         pathname: '/greet',
+         query: {
+            recipient: recipient,
+            sender: sender,
+            character: character !== '' ? character : getRandomCharacter().name,
+            generated: true,
+         },
+      };
+   };
+
+   const getRandomCharacter = () => {
+      const randomCharacter =
+         dataCharacter[Math.floor(Math.random() * dataCharacter.length)];
+      return randomCharacter;
    };
 
    return (
@@ -21,47 +36,60 @@ const generate = () => {
             title='Buat salam'
             description='Buat salam ucapan hari raya'
          ></Header>
-         <Flex
-            flexDirection='column'
-            flex={1}
-            justifyContent='center'
-            alignItems='center'
-            bg='background'
-         >
-            <Flex
-               width={[1, 1, 1 / 3, 1 / 4]}
-               height={'100vh'}
-               flexDirection='column'
-               justifyContent='center'
-            >
-               <Box Flex mb={3}>
-                  <Label>Kanggo</Label>
-                  <Input
-                     id='recipient'
-                     name='recipient'
-                     type='recipient'
-                     placeholder='Bajuri...'
-                     onChange={(e) => setRecipient(e.target.value)}
-                  ></Input>
-               </Box>
-               <Box Flex>
-                  {recipient !== '' ? (
-                     <Flex flexDirection='row'>
-                        <NextLink
-                           href='/salam/[salam]'
-                           as={`/salam/${btoa(recipient)}`}
-                        >
-                           <Button variant='primary'>Lihat ucapan</Button>
-                        </NextLink>
-                        <Button variant='outline' ml={2} onClick={handleClick}>
-                           Salin
-                        </Button>
-                     </Flex>
-                  ) : null}
-               </Box>
-            </Flex>
-         </Flex>
+         <GenerateLayout>
+            <Heading fontSize={4} mb={4}>
+               Kirim-kirim salam
+            </Heading>
+            <Box Flex mb={4}>
+               <Label>Untuk</Label>
+               <Input
+                  id='recipient'
+                  name='recipient'
+                  type='recipient'
+                  placeholder='Misalnya Salehaw...'
+                  onChange={(e) => setRecipient(e.target.value)}
+               ></Input>
+            </Box>
+            <Box Flex mb={4}>
+               <Label>Dari</Label>
+               <Input
+                  id='sender'
+                  name='sender'
+                  type='sender'
+                  placeholder='Kamto e&...'
+                  onChange={(e) => setSender(e.target.value)}
+               ></Input>
+            </Box>
+            <Box Flex mb={4}>
+               <Label>{`Karakter${
+                  character !== '' ? ': ' + character : ''
+               }`}</Label>
+               <CharacterList
+                  setCharacter={setCharacter}
+                  dataCharacter={dataCharacter}
+               />
+            </Box>
+            <Box Flex>
+               {recipient !== '' ? (
+                  <NextLink href={queryBuilder()}>
+                     <Button width={1} variant='primary'>
+                        Lihat ucapan
+                     </Button>
+                  </NextLink>
+               ) : null}
+            </Box>
+         </GenerateLayout>
       </>
    );
 };
+
 export default generate;
+
+export function getStaticProps() {
+   const dataCharacter = getListCharacter();
+   return {
+      props: {
+         dataCharacter,
+      },
+   };
+}

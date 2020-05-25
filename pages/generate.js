@@ -30,6 +30,7 @@ const generate = () => {
          >
             <Flex
                width={[1, 1, 1 / 3, 1 / 4]}
+               px={[4, 4, null, null]}
                height={'100vh'}
                flexDirection='column'
                justifyContent='center'
