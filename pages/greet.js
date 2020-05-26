@@ -16,17 +16,18 @@ const Greet = () => {
       return newUrl;
    };
 
-   const handleCopy = async () => {
+   const handleClick = async () => {
       const url = getUrl();
 
-      const el = document.createElement('textarea');
-      el.value = url;
-      el.readOnly = true;
-      document.body.appendChild(el);
-      el.select();
-      document.execCommand('copy');
-      document.body.removeChild(el);
+      // const el = document.createElement('textarea');
+      // el.value = url;
+      // el.readOnly = true;
+      // document.body.appendChild(el);
+      // el.select();
+      // document.execCommand('copy');
+      // document.body.removeChild(el);
 
+      copyToClipboard(url);
       toast('Tautan berhasil disalin!', {
          position: 'top-right',
          autoClose: 5000,
@@ -36,6 +37,47 @@ const Greet = () => {
          draggable: true,
          progress: undefined,
       });
+   };
+
+   const copyToClipboard = (textToCopy) => {
+      var textArea;
+
+      function isOS() {
+         //can use a better detection logic here
+         return navigator.userAgent.match(/ipad|iphone/i);
+      }
+
+      function createTextArea(text) {
+         textArea = document.createElement('textArea');
+         textArea.readOnly = true;
+         textArea.contentEditable = true;
+         textArea.value = text;
+         document.body.appendChild(textArea);
+      }
+
+      function selectText() {
+         var range, selection;
+
+         if (isOS()) {
+            range = document.createRange();
+            range.selectNodeContents(textArea);
+            selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            textArea.setSelectionRange(0, 999999);
+         } else {
+            textArea.select();
+         }
+      }
+
+      function copyTo() {
+         document.execCommand('copy');
+         document.body.removeChild(textArea);
+      }
+
+      createTextArea(textToCopy);
+      selectText();
+      copyTo();
    };
 
    return (
@@ -67,7 +109,7 @@ const Greet = () => {
             </Text>
             {generated ? (
                <>
-                  <Button mb={3} onClick={handleCopy}>
+                  <Button mb={3} onClick={handleClick}>
                      Salin tautan
                   </Button>
                </>
