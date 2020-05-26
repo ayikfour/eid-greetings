@@ -21,6 +21,7 @@ const Greet = () => {
 
       const el = document.createElement('textarea');
       el.value = url;
+      el.readOnly = true;
       document.body.appendChild(el);
       el.select();
       document.execCommand('copy');
